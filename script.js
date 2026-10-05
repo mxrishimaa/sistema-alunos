@@ -28,11 +28,12 @@ while (executando) {
         // CADASTRAR
         // --------------------------------
         case "1":
-                console.log("\n--- CADASTRO DE ALUNO ---");
-    
-                let nome = readline.question("Nome: ");
-                let idade = Number(readline.question("Idade: "));
-                let nota = parseFloat(readline.question("Nota: "));
+            console.log("\n--- CADASTRO DE ALUNO ---");
+
+            let nome = readline.question("Nome: ");
+            let idade = Number(readline.question("Idade: "));
+            let nota = parseFloat(readline.question("Nota: "));
+            let matricula = Number(readline.question("Matrícula: "))
 
             // Verificar se a nota está entre 0 e 10
             if (Number.isNaN(nota) || nota < 0 || nota > 10) {
@@ -41,42 +42,35 @@ while (executando) {
             }
             // Criar um objeto aluno
             let aluno = {
-                "Nome": nome.trim(),
-                "Idade": idade,
-                "Nota": nota
+                matricula: matricula,
+                nome: nome.trim(),
+                idade: idade,
+                nota: nota
             }
             // Adicionar o aluno ao array
             alunos.push(aluno);
             console.log("Aluno cadastrado com sucesso!")
+            break;
 
         // --------------------------------
         // LISTAR
         // --------------------------------
         case "2":
+            // Verificar se existem alunos cadastrado
 
-            console.log("1 - Listar");
-            console.log("2 - Buscar");
-            let opcao = readline.question("Escolha uma opcao: ");
+            if (alunos.length === 0) {
+                console.log("Nenhum aluno cadastrado.")
+                break;
+            } 
 
-            switch (opcao) {
-            
-            // Verificar se existem alunos cadastrados
-            case "1":
-                console.log("\n--- ALUNOS CADASTRADOS ---");
-                console.log(alunos);
-                
-            // Percorrer o array utilizando FOR
-            for (let aluno in alunos) {
-                console.log()
+            for (let aluno of alunos) {
+                console.log ("---------------------------");
+                console.log ("Matrícula: ", aluno.matricula);
+                console.log ("Nome: ", aluno.nome);
+                console.log ("Idade: ", aluno.idade);   
+                console.log ("Nota: ", aluno.nota);
             }
-            // Mostrar:
-            // Nome
-            // Idade
-            // Nota
-
-
-            break;
-
+                
 
         // --------------------------------
         // CONSULTAR
